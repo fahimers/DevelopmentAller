@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Aller Media</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -83,7 +83,7 @@
                 <div class="title m-b-md">
                    Aller Media
                 </div>
-
+             <div class = "latest-post">  </div>
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -97,4 +97,21 @@
             </div>
         </div>
     </body>
+
+<script>
+
+
+    const url = 'http://127.0.0.1:8000/';
+    const proxyurl ='http://localhost:3000/api/articles/';
+    const postsContainer = document.querySelector('.latest-posts');
+
+
+    fetch( proxyurl )
+    .then(response => response.json())
+        .then(data => console.log(data))
+        .then(response => response.text())
+        .then(contents => console.log(contents))
+     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+
+</script>
 </html>

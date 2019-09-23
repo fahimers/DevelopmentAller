@@ -83,17 +83,19 @@
                 <div class="title m-b-md">
                    Aller Media
                 </div>
-             <div class = "latest-post">  </div>
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
+
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
+
+
+
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+
                 </div>
+                <div class = "latest-post">  </div>
             </div>
         </div>
     </body>
@@ -103,15 +105,36 @@
 
     const url = 'http://127.0.0.1:8000/';
     const proxyurl ='http://localhost:3000/api/articles/';
-    const postsContainer = document.querySelector('.latest-posts');
+    const postsContainer = document.querySelector('.latest-post');
 
 
     fetch( proxyurl )
     .then(response => response.json())
-        .then(data => console.log(data))
-        .then(response => response.text())
-        .then(contents => console.log(contents))
-     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+        //.then(data => console.log(data))
+
+        .then(data => {
+           data.map(get => {
+               const innerContent =
+                   `
+                   </br>
+                    <h3><bold>ID</bold>: ${get[0].id} </h3>
+                    <h3>Title: ${get[0].title} </h3>
+                    <h3>Content: ${get[0].content} </h3>
+
+                    <h3>ID: ${get[1].id} </h3>
+                    <h3>Title: ${get[1].title} </h3>
+                    <h3>Content: ${get[1].content} </h3>
+
+                     `
+
+               postsContainer.innerHTML += innerContent;
+
+           })
+
+        });
+
+
+
 
 </script>
 </html>
